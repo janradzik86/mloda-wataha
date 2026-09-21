@@ -49,3 +49,32 @@ export interface YoungWolfAction {
   label: string;
   requiresParentApproval?: boolean;
 }
+
+export type SchoolSubject =
+  | "math"
+  | "polish"
+  | "english"
+  | "science"
+  | "history"
+  | "geography"
+  | "physics"
+  | "chemistry"
+  | "biology"
+  | "computer_science"
+  | "other";
+
+export interface SchoolHelpRequest {
+  rawText: string;
+  subject?: SchoolSubject;
+  topicHint?: string;
+  saidDidNotUnderstand: boolean;
+}
+
+export interface SchoolHelpReply {
+  understoodRequest: boolean;
+  matchedTopicId?: string;
+  subject?: SchoolSubject;
+  reply: TutorReply;
+  needsClarification: boolean;
+  clarificationPrompt?: string;
+}
