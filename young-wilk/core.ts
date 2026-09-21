@@ -1,6 +1,7 @@
 import { lessonById } from "./knowledge";
 import { evaluateDiagnostic } from "./diagnostic";
 import type { AgeBand, DiagnosticQuestion, ExplainStyle, LearnerProfile, TutorReply } from "./types";
+import { handleSchoolHelp } from "./school-help";
 
 function ageBand(age: number): AgeBand {
   if (age <= 9) return "7-9";
@@ -90,6 +91,14 @@ export class YoungWolfTutor {
     if (q.includes("przykład") || q.includes("pokaż na przykładzie")) return "example";
     if (q.includes("zrób z tego grę") || q.includes("misja")) return "mission";
     return this.lastStyle;
+  }
+
+  schoolHelp(rawText: string) {
+    return handleSchoolHelp(this, rawText);
+  }
+
+  getAgeBand(): AgeBand {
+    return ageBand(this.profile.age);
   }
 
   diagnostic(questions: DiagnosticQuestion[], answers: Record<string, string | number | boolean>) {
