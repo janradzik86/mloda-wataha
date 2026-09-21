@@ -26,3 +26,12 @@ const result = evaluateDiagnostic(
 
 if (result.decision !== "micro_review") throw new Error("Diagnostic routing failed");
 if (result.rewardEligible) throw new Error("Reward should wait for mastery");
+
+const school = tutor.schoolHelp("Dzisiaj w szkole miałam ułamki i nie zrozumiałam, możesz mi to wytłumaczyć?");
+if (!school.understoodRequest) throw new Error("School help intent not recognized");
+if (school.matchedTopicId !== "math.fractions.basic") throw new Error("School topic matching failed");
+if (school.needsClarification) throw new Error("Known school topic should not need clarification");
+
+const unknownSchool = tutor.schoolHelp("Na historii mieliśmy coś o średniowieczu i nie zrozumiałam.");
+if (!unknownSchool.understoodRequest) throw new Error("Unknown school topic intent not recognized");
+if (!unknownSchool.needsClarification) throw new Error("Unknown topic should request clarification");
