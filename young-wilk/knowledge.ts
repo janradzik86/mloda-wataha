@@ -2,6 +2,23 @@ import type { LessonChunk } from "./types";
 
 export const LESSONS: LessonChunk[] = [
   {
+    topicId: "math.addition.carrying",
+    title: "Dodawanie pisemne z przenoszeniem",
+    concept: "Gdy suma cyfr w jednej kolumnie jest większa niż 9, zapisujesz cyfrę jedności, a dziesiątkę przenosisz do następnej kolumny.",
+    examplesByBand: {
+      "7-9": ["W 27 + 18 najpierw 7 + 8 = 15. Zapisujesz 5, a 1 przenosisz do dziesiątek."],
+      "10-12": ["Przenoszenie działa tak samo w większych liczbach: liczysz kolumnami od prawej."],
+      "13-15": ["To algorytm pozycyjny oparty na systemie dziesiętnym."],
+      "16+": ["Przeniesienie jest konsekwencją reprezentacji liczby w bazie 10."]
+    },
+    practiceByBand: {
+      "7-9": ["Policz 36 + 27, zaczynając od jedności."],
+      "10-12": ["Policz 468 + 257."],
+      "13-15": ["Wyjaśnij, skąd bierze się przeniesiona jedynka w 587 + 468."],
+      "16+": ["Zapisz algorytm dodawania kolumnowego własnymi słowami."]
+    }
+  },
+  {
     topicId: "math.fractions.basic",
     title: "Ułamki bez strachu",
     concept: "Ułamek pokazuje część całości.",
