@@ -47,3 +47,19 @@ Fakty kryzysowe i edukacyjne mają pochodzić z zatwierdzonej bazy, a adaptacja 
 4. Dodać Family Bridge hook do zgód rodzica.
 5. Dodać Lizaki/Norę jako osobną warstwę nagród.
 6. Podłączyć natywny STT/TTS w aplikacji.
+
+## Tryb „Nie zrozumiałem w szkole”
+
+Młody WILK potrafi przyjąć naturalne zdanie dziecka, np.:
+
+„Dzisiaj mieliśmy ułamki i nie zrozumiałam.”
+
+Silnik:
+1. rozpoznaje, że chodzi o pomoc po lekcji,
+2. próbuje rozpoznać przedmiot i temat,
+3. dobiera wyjaśnienie do wieku,
+4. tłumaczy inaczej niż na lekcji,
+5. daje jedno małe ćwiczenie,
+6. jeśli temat jest nieznany, nie zgaduje, tylko prosi o nazwę tematu, przykład zadania lub zdanie z lekcji.
+
+Docelowo ten tryb będzie przyjmował też zdjęcie zadania/strony zeszytu po stronie aplikacji, ale rdzeń nie udaje rozpoznania obrazu, dopóki taka funkcja nie zostanie faktycznie podłączona.
