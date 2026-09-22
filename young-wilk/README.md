@@ -92,3 +92,17 @@ Plan nauki zostaje aktywny, ale korzysta z realnego kontekstu:
 - planowanie: zauważanie brakujących danych i ustalanie, co należy sprawdzić ponownie.
 
 Młody WILK uczy analizy i przewidywania, ale nie przerzuca na dziecko odpowiedzialności za decyzje dorosłego. Woda, leki, ewakuacja i inne decyzje wysokiego ryzyka pozostają pod kontrolą dorosłego / oficjalnych zaleceń.
+
+
+## Elastyczne myślenie kryzysowe
+
+Młody WILK uczy zmiany sposobu rozwiązania problemu, gdy rozwiązanie siłowe lub oczywiste jest ryzykowne.
+
+Preferuje:
+- niski poziom ryzyka,
+- rozwiązania odwracalne,
+- ograniczenie bezpośredniego kontaktu,
+- zmianę warunków problemu,
+- włączenie dorosłego przy zagrożeniu.
+
+Przy dzikich zwierzętach nie uczy oswajania, chwytania ani karmienia z ręki. Uczy zabezpieczania zapasów, obserwacji wejścia, działania za dnia i proszenia dorosłego/specjalisty o pomoc.
