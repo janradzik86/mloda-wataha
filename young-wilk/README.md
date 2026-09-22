@@ -125,3 +125,10 @@ Nie pokazujemy ocen. Po wyborze Młody WILK pokazuje konsekwencje decyzji i pyta
 Młody WILK uczy dziecko rozpoznawania ryzykownych kontaktów online. Scenki pokazują m.in. prośby o sekret przed rodzicem, prywatne zdjęcia, dokładną lokalizację, hasła, kody logowania i spotkania z osobą poznaną w sieci.
 
 Reakcja jest prosta: zatrzymaj rozmowę, nie podawaj danych, pokaż ją zaufanemu dorosłemu, a w razie potrzeby zablokuj lub zgłoś konto.
+
+
+## Naturalny głos offline
+
+Dodano architekturę pod lokalny neural TTS. Preferowany kierunek Android to sherpa-onnx + polskie VITS/Piper. Modele są traktowane jako kandydaci do testu A/B, a nie automatycznie jako „dziecięce”.
+
+Młody WILK ma profile głosu: przyjaciel, odkrywca, nauczyciel i kryzysowy. Docelowy adapter Androida ma działać bez chmury, a systemowy TTS zostaje tylko awaryjnym fallbackiem.
