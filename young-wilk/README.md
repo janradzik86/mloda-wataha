@@ -82,3 +82,13 @@ Nie generuje i nie uruchamia dowolnego kodu. Korzysta z ograniczonych klocków i
 JEŚLI zdarzenie → TO reakcja
 
 Dzięki temu może jednocześnie tworzyć proste gry offline i tłumaczyć dziecku podstawy programowania.
+
+
+## Nauka w trybie kryzysowym
+
+Plan nauki zostaje aktywny, ale korzysta z realnego kontekstu:
+- matematyka: liczenie i prognoza zapasów na podstawie wartości podanych przez dorosłego,
+- język polski: prowadzenie dziennika zapasów i zdarzeń,
+- planowanie: zauważanie brakujących danych i ustalanie, co należy sprawdzić ponownie.
+
+Młody WILK uczy analizy i przewidywania, ale nie przerzuca na dziecko odpowiedzialności za decyzje dorosłego. Woda, leki, ewakuacja i inne decyzje wysokiego ryzyka pozostają pod kontrolą dorosłego / oficjalnych zaleceń.
