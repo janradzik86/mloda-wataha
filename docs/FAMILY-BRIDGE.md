@@ -125,3 +125,57 @@ Domyślnie NIE przesyłamy pełnej treści prywatnej rozmowy dziecka. Surowa wia
 
 Dla ryzyka unclear Młody WILK zachęca dziecko do pokazania sytuacji rodzicowi, ale nie wysyła automatycznego alarmu.
 Dla high / urgent tworzy alert bezpieczeństwa, jeśli istnieje aktywny parent_link.
+
+
+## Lokalizacja dziecka dla sparowanego rodzica
+
+Family Bridge może przenosić bieżącą lokalizację dziecka do aplikacji Polska Wataha, ale tylko dla aktywnego parent_link.
+
+Nowe encje:
+
+```
+child_location_consent (
+  child_user_id,
+  parent_user_id,
+  enabled,
+  mode,               -- off | while_app_open | background
+  share_exact_location,
+  retention_hours,
+  updated_at
+)
+
+child_location_fix (
+  child_user_id,
+  lat,
+  lon,
+  accuracy_m,
+  recorded_at,
+  source
+)
+```
+
+Endpointy:
+
+- POST /bridge/location/consent
+- POST /bridge/location/update
+- GET /bridge/children/:id/location
+- DELETE /bridge/location/history
+
+Zasady bezpieczeństwa:
+- tylko sparowany rodzic/opiekun,
+- backend sprawdza parent_link, nie ufa child_user_id z klienta,
+- dziecko widzi wyraźny status „Udostępniasz lokalizację rodzicowi”,
+- brak publicznej lokalizacji,
+- brak lokalizacji dla ADMIN tylko dlatego, że jest ADMIN,
+- śledzenie w tle wymaga osobnego uprawnienia systemowego,
+- retencja historii ma być krótka i konfigurowalna,
+- po wyłączeniu udostępniania nowe pozycje nie są wysyłane,
+- SOS może wysłać bieżącą pozycję zgodnie z trybem kryzysowym.
+
+W Polskiej Watasze rodzic widzi:
+- bieżącą pozycję na mapie,
+- czas ostatniej aktualizacji,
+- dokładność,
+- status „aktualna / nieaktualna”.
+
+Nie budujemy ukrytego śledzenia. Funkcja ma być jawna po stronie dziecka i ograniczona do zatwierdzonej relacji rodzic-dziecko.
