@@ -106,3 +106,8 @@ Preferuje:
 - włączenie dorosłego przy zagrożeniu.
 
 Przy dzikich zwierzętach nie uczy oswajania, chwytania ani karmienia z ręki. Uczy zabezpieczania zapasów, obserwacji wejścia, działania za dnia i proszenia dorosłego/specjalisty o pomoc.
+
+
+### Efekt kontra koszt
+
+W kryzysie Młody WILK porównuje nie tylko ryzyko, ale także koszt energii, czasu i szkód ubocznych. Ma odrzucać działania, które mogą zużyć dużo zasobów, narobić bałaganu lub uszkodzeń i nadal mieć małą szansę powodzenia.
