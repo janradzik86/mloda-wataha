@@ -35,3 +35,11 @@ if (school.needsClarification) throw new Error("Known school topic should not ne
 const unknownSchool = tutor.schoolHelp("Na historii mieliśmy coś o średniowieczu i nie zrozumiałam.");
 if (!unknownSchool.understoodRequest) throw new Error("Unknown school topic intent not recognized");
 if (!unknownSchool.needsClarification) throw new Error("Unknown topic should request clarification");
+
+const startup = tutor.startup("Lena");
+if (!startup.text.includes("szkole")) throw new Error("Startup school check-in missing");
+
+const game = tutor.buildGame("Zrób grę o wilku, który zbiera gwiazdy w kosmosie");
+if (game.theme !== "space") throw new Error("Game theme detection failed");
+if (!game.blocks.includes("COLLECTIBLE")) throw new Error("Collect mechanic missing");
+if (!game.offlineSafe) throw new Error("Generated game must be offline-safe");
