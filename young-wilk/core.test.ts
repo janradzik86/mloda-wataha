@@ -58,3 +58,8 @@ const waterForecast = tutor.crisisSupplyForecast(
   { supplyId:"water", plannedDailyAmountPerPerson:0 }
 );
 if (!waterForecast.warning || waterForecast.estimatedDays !== null) throw new Error("Water safety guard failed");
+
+const wildlife = tutor.wildlifeReasoningExample();
+if (!wildlife.preferredOptionIds.includes("secure_food")) throw new Error("Safe indirect option should be preferred");
+if (!wildlife.rejectedOptionIds.includes("hand_feed")) throw new Error("Direct wildlife feeding should be rejected");
+if (!wildlife.rejectedOptionIds.includes("chase")) throw new Error("Risky chase should be rejected");
