@@ -10,6 +10,7 @@ import { evaluateLogicScenario, logicScenarioById, LOGIC_SCENARIOS } from "./log
 import { assessOnlineContact, ONLINE_SAFETY_SCENARIOS, onlineSafetyRulebook } from "./online-safety-thinking";
 import { assessChildReportedContact } from "./online-safety-triage";
 import { RIGHTS_LESSONS, rightsLessonById, rightsLearningRules } from "./rights-education";
+import { CIVIC_RIGHTS_AND_DUTIES, civicLessonById, civicLearningPrinciples } from "./civic-rights-duties";
 
 function ageBand(age: number): AgeBand {
   if (age <= 9) return "7-9";
@@ -179,6 +180,18 @@ export class YoungWolfTutor {
 
   rightsRules() {
     return rightsLearningRules();
+  }
+
+  civicLessons() {
+    return CIVIC_RIGHTS_AND_DUTIES;
+  }
+
+  civicLesson(id: string) {
+    return civicLessonById(id);
+  }
+
+  civicPrinciples() {
+    return civicLearningPrinciples();
   }
 
   getAgeBand(): AgeBand {
