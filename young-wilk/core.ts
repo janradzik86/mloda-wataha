@@ -6,6 +6,7 @@ import { buildGameBlueprint } from "./game-builder";
 import { createStartupPrompt } from "./startup";
 import { crisisLearningIntro, forecastSupply, makeCrisisLearningTasks } from "./crisis-learning";
 import { analyzeCrisisProblem, wildlifeProblemTemplate } from "./adaptive-crisis-reasoning";
+import { evaluateLogicScenario, logicScenarioById, LOGIC_SCENARIOS } from "./logic-thinking";
 
 function ageBand(age: number): AgeBand {
   if (age <= 9) return "7-9";
@@ -127,6 +128,20 @@ export class YoungWolfTutor {
 
   wildlifeReasoningExample() {
     return analyzeCrisisProblem(wildlifeProblemTemplate());
+  }
+
+  logicScenarios() {
+    return LOGIC_SCENARIOS;
+  }
+
+  logicScenario(id: string) {
+    return logicScenarioById(id);
+  }
+
+  evaluateLogic(id: string, chosenOptionId: string) {
+    const scenario = logicScenarioById(id);
+    if (!scenario) return undefined;
+    return evaluateLogicScenario(scenario, chosenOptionId);
   }
 
   getAgeBand(): AgeBand {
