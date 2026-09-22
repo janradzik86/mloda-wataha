@@ -8,6 +8,7 @@ import { crisisLearningIntro, forecastSupply, makeCrisisLearningTasks } from "./
 import { analyzeCrisisProblem, wildlifeProblemTemplate } from "./adaptive-crisis-reasoning";
 import { evaluateLogicScenario, logicScenarioById, LOGIC_SCENARIOS } from "./logic-thinking";
 import { assessOnlineContact, ONLINE_SAFETY_SCENARIOS, onlineSafetyRulebook } from "./online-safety-thinking";
+import { assessChildReportedContact } from "./online-safety-triage";
 
 function ageBand(age: number): AgeBand {
   if (age <= 9) return "7-9";
@@ -161,6 +162,10 @@ export class YoungWolfTutor {
 
   onlineSafetyRules() {
     return onlineSafetyRulebook();
+  }
+
+  assessReportedOnlineContact(input: Parameters<typeof assessChildReportedContact>[0]) {
+    return assessChildReportedContact(input);
   }
 
   getAgeBand(): AgeBand {
