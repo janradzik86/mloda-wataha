@@ -146,3 +146,8 @@ Treści muszą wskazywać źródła i odróżniać prawo od opinii. Młody WILK 
 Moduł praw został rozszerzony o przygotowanie do dorosłego życia. Młody WILK uczy praw człowieka, praw dziecka, praw obywatelskich, środków ochrony oraz konstytucyjnych obowiązków.
 
 W scenariuszach kryzysowych rozróżnia pomoc po klęsce, politykę mieszkaniową, odszkodowanie, odpowiedzialność organu publicznego i odwołanie. Nie przedstawia samego faktu zniszczenia domu przez powódź jako automatycznego prawa do odbudowy domu przez państwo.
+
+
+## Aktualizacje wiedzy
+
+Młody WILK jest local-first, ale w trybie normalnym może sprawdzać i pobierać podpisane pakiety wiedzy. Prawo, pierwsza pomoc i procedury kryzysowe nie uczą się bezpośrednio z otwartego internetu. W Trybie Kryzysowym aktualizacje sieciowe są wyłączone i używana jest ostatnia zweryfikowana wersja lokalna.
