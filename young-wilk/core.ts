@@ -4,6 +4,7 @@ import type { AgeBand, DiagnosticQuestion, ExplainStyle, LearnerProfile, TutorRe
 import { handleSchoolHelp } from "./school-help";
 import { buildGameBlueprint } from "./game-builder";
 import { createStartupPrompt } from "./startup";
+import { crisisLearningIntro, forecastSupply, makeCrisisLearningTasks } from "./crisis-learning";
 
 function ageBand(age: number): AgeBand {
   if (age <= 9) return "7-9";
@@ -105,6 +106,18 @@ export class YoungWolfTutor {
 
   buildGame(rawText: string, learningTopicId?: string) {
     return buildGameBlueprint({ rawText, learningTopicId });
+  }
+
+  crisisLearningStart(childName?: string) {
+    return crisisLearningIntro(childName);
+  }
+
+  crisisSupplyForecast(plan: Parameters<typeof forecastSupply>[0], input: Parameters<typeof forecastSupply>[1]) {
+    return forecastSupply(plan, input);
+  }
+
+  crisisLearningTasks(plan: Parameters<typeof makeCrisisLearningTasks>[0], forecasts: Parameters<typeof makeCrisisLearningTasks>[1]) {
+    return makeCrisisLearningTasks(plan, forecasts);
   }
 
   getAgeBand(): AgeBand {
