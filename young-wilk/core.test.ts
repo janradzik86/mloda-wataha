@@ -68,3 +68,9 @@ const logic = tutor.logicScenario("logic.homework");
 if (!logic) throw new Error("Logic scenario missing");
 const logicResult = tutor.evaluateLogic("logic.homework", "b");
 if (!logicResult?.correct) throw new Error("Logic evaluation failed");
+
+const safetyScenario = tutor.onlineSafetyScenario("unknown-adult-private-chat");
+if (!safetyScenario) throw new Error("Online safety scenario missing");
+const safetyResult = tutor.assessOnlineSafety("unknown-adult-private-chat");
+if (!safetyResult || safetyResult.risk !== "high") throw new Error("High-risk contact not detected");
+if (!safetyResult.recommendedActions.some(x => x.includes("rodzic"))) throw new Error("Trusted adult escalation missing");
