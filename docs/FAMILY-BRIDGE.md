@@ -179,3 +179,34 @@ W Polskiej Watasze rodzic widzi:
 - status „aktualna / nieaktualna”.
 
 Nie budujemy ukrytego śledzenia. Funkcja ma być jawna po stronie dziecka i ograniczona do zatwierdzonej relacji rodzic-dziecko.
+
+
+## SOS: zabezpieczenie dźwięku otoczenia
+
+Po świadomym naciśnięciu przez dziecko przycisku „POTRZEBUJĘ POMOCY” aplikacja może uruchomić Emergency Evidence Capture.
+
+Zakres MVP:
+- nagrywanie wyłącznie po SOS,
+- wyraźny wskaźnik aktywnego mikrofonu,
+- brak stałego podsłuchu i brak ukrytego nagrywania przed SOS,
+- limit czasu nagrania,
+- lokalne szyfrowanie,
+- SHA-256 po zakończeniu pliku,
+- zapis czasu,
+- opcjonalnie zapis pozycji GPS i dokładności,
+- upload tylko do aktywnie sparowanego rodzica/opiekuna,
+- brak publicznego dostępu,
+- brak automatycznego wysyłania pliku do policji lub innych służb.
+
+Nowe endpointy kontraktowe:
+- POST /bridge/emergency-evidence/start
+- POST /bridge/emergency-evidence/:id/complete
+- POST /bridge/emergency-evidence/:id/upload
+- GET /bridge/children/:id/emergency-evidence
+- DELETE /bridge/emergency-evidence/:id
+
+Backend musi weryfikować parent_link i ownership. Sam ADMIN nie otrzymuje dostępu do nagrań dziecka.
+
+Rodzic w Polskiej Watasze widzi zdarzenie:
+„SOS dziecka · dostępny zapis dźwięku”
+oraz czas, pozycję i integralność pliku.
