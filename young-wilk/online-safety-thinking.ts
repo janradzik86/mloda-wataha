@@ -93,6 +93,7 @@ export function assessOnlineContact(
 
 export function onlineSafetyRulebook() {
   return [
+    "Osoba, która podaje się za rówieśnika, nie musi nim naprawdę być. Wiek i tożsamość online nie są potwierdzone samą wiadomością.",
     "Nieznajomy dorosły nie powinien prosić dziecka o sekret przed rodzicem.",
     "Nie wysyłaj obcym prywatnych zdjęć, adresu, szkoły, numeru telefonu ani dokładnej lokalizacji.",
     "Hasła, kody logowania i kody jednorazowe są prywatne.",
