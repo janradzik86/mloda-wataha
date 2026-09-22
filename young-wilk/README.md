@@ -111,3 +111,10 @@ Przy dzikich zwierzętach nie uczy oswajania, chwytania ani karmienia z ręki. U
 ### Efekt kontra koszt
 
 W kryzysie Młody WILK porównuje nie tylko ryzyko, ale także koszt energii, czasu i szkód ubocznych. Ma odrzucać działania, które mogą zużyć dużo zasobów, narobić bałaganu lub uszkodzeń i nadal mieć małą szansę powodzenia.
+
+
+## Logiczne myślenie w trybie normalnym
+
+Młody WILK ćwiczy logikę także poza trybem kryzysowym. Krótkie scenki uczą przewidywania skutków, porównywania opcji, planowania kolejności działań i oszczędzania czasu oraz zasobów.
+
+Nie pokazujemy ocen. Po wyborze Młody WILK pokazuje konsekwencje decyzji i pyta o inne możliwe rozwiązanie.
