@@ -84,3 +84,7 @@ const impersonationRisk = tutor.assessReportedOnlineContact({
 if (impersonationRisk.risk !== "high") throw new Error("Peer-claim high-risk contact not detected");
 if (!impersonationRisk.shouldNotifyParent) throw new Error("High-risk contact should create parent alert");
 if (impersonationRisk.parentAlert?.includeRawMessage !== false) throw new Error("Raw child message must not be shared by default");
+
+const dignity = tutor.rightsLesson("rights.dignity");
+if (!dignity) throw new Error("Rights education lesson missing");
+if (!dignity.sourceRefs.some(x => x.includes("art. 30"))) throw new Error("Constitution source reference missing");
