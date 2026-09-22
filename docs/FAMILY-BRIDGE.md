@@ -210,3 +210,37 @@ Backend musi weryfikować parent_link i ownership. Sam ADMIN nie otrzymuje dost�
 Rodzic w Polskiej Watasze widzi zdarzenie:
 „SOS dziecka · dostępny zapis dźwięku”
 oraz czas, pozycję i integralność pliku.
+
+
+## SOS: transmisja dźwięku na żywo do opiekuna
+
+Docelowy model NIE polega na nagrywaniu materiału na urządzeniu dziecka jako głównym miejscu zapisu.
+
+Po jawnym użyciu przez dziecko przycisku „POTRZEBUJĘ POMOCY”:
+
+1. Młoda Wataha otwiera szyfrowaną sesję SOS audio.
+2. Family Bridge sprawdza aktywny parent_link.
+3. Backend wysyła opiekunowi pilne powiadomienie i dane sygnalizacyjne.
+4. Telefon dziecka transmituje dźwięk mikrofonu na żywo.
+5. Polska Wataha opiekuna odbiera strumień.
+6. Nagranie jest zapisywane lokalnie na urządzeniu opiekuna.
+7. Serwer pośredniczący nie archiwizuje samego audio.
+
+Preferowany transport: WebRTC z szyfrowaniem transportowym. Backend służy do auth, sygnalizacji sesji i powiadomień, nie do przechowywania strumienia.
+
+Kontrakt:
+- POST /bridge/sos-audio/session
+- POST /bridge/sos-audio/:id/offer
+- POST /bridge/sos-audio/:id/answer
+- POST /bridge/sos-audio/:id/ice
+- POST /bridge/sos-audio/:id/end
+
+Wymagania:
+- start tylko po jawnym SOS dziecka,
+- widoczny wskaźnik użycia mikrofonu,
+- brak stałego podsłuchu,
+- tylko aktywnie sparowany rodzic/opiekun,
+- ADMIN bez parent_link nie ma dostępu,
+- dziecko widzi „Dźwięk jest przesyłany do opiekuna”,
+- rodzic widzi „SOS: odbieram dźwięk” i stan lokalnego nagrywania,
+- przy braku internetu alert/lokalizacja korzystają z dostępnych kanałów, ale strumień IP nie jest udawany jako działający.
