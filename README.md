@@ -6,7 +6,7 @@ Osobna aplikacja dla dzieci i młodzieży.
 Nie jest zakładką, trybem ani modułem aplikacji dorosłego.
 Nie kopiuj tu interfejsu, nawigacji ani WILKA z Polskiej Watahy.
 
-Stan repozytorium: **architektura**. Brak ekranów dziecka, lekcji i Nory — świadomie. Implementacja powstanie w tym projekcie, nie w `polska-wataha`.
+Stan repozytorium: **ETAP 1 gotowy** (szkielet, auth, RBAC, dwa shelle, profil, Młody Wilk jako kontrakt+stub, Family Bridge API). Nora i sklep — ETAP 3. Silnik Młodego Wilka — branch `chatgpt/mlody-wilk-v0.1` / [PR #1](https://github.com/janradzik86/mloda-wataha/pull/1). Nie kopiujemy drugiego silnika.
 
 ## Ekosystem
 
