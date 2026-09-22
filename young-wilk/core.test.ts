@@ -43,3 +43,18 @@ const game = tutor.buildGame("Zrób grę o wilku, który zbiera gwiazdy w kosmos
 if (game.theme !== "space") throw new Error("Game theme detection failed");
 if (!game.blocks.includes("COLLECTIBLE")) throw new Error("Collect mechanic missing");
 if (!game.offlineSafe) throw new Error("Generated game must be offline-safe");
+
+const crisisIntro = tutor.crisisLearningStart("Lena");
+if (!crisisIntro.includes("prawdziwych danych")) throw new Error("Crisis learning intro missing");
+
+const forecast = tutor.crisisSupplyForecast(
+  { people: 4, supplies: [{ id:"rice", name:"Ryż", kind:"food", amount:8, unit:"kg" }] },
+  { supplyId:"rice", plannedDailyAmountPerPerson:0.25 }
+);
+if (forecast.estimatedDays !== 8) throw new Error("Supply forecast calculation failed");
+
+const waterForecast = tutor.crisisSupplyForecast(
+  { people: 2, supplies: [{ id:"water", name:"Woda", kind:"water", amount:12, unit:"l" }] },
+  { supplyId:"water", plannedDailyAmountPerPerson:0 }
+);
+if (!waterForecast.warning || waterForecast.estimatedDays !== null) throw new Error("Water safety guard failed");
