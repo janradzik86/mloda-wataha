@@ -63,3 +63,22 @@ Silnik:
 6. jeśli temat jest nieznany, nie zgaduje, tylko prosi o nazwę tematu, przykład zadania lub zdanie z lekcji.
 
 Docelowo ten tryb będzie przyjmował też zdjęcie zadania/strony zeszytu po stronie aplikacji, ale rdzeń nie udaje rozpoznania obrazu, dopóki taka funkcja nie zostanie faktycznie podłączona.
+
+
+## Start rozmowy
+
+Po uruchomieniu Młody WILK zaczyna od krótkiego check-inu:
+
+„Czy było dziś w szkole coś, czego nie zrozumiałeś albo co chcesz ze mną przeanalizować?”
+
+Dziecko może od razu przejść do pomocy szkolnej, zwykłego pytania, powtórki albo budowania gry.
+
+## Tworzenie gier i nauka kodowania
+
+Młody WILK potrafi zamienić naturalny opis dziecka na bezpieczny, lokalny blueprint gry.
+
+Nie generuje i nie uruchamia dowolnego kodu. Korzysta z ograniczonych klocków i reguł typu:
+
+JEŚLI zdarzenie → TO reakcja
+
+Dzięki temu może jednocześnie tworzyć proste gry offline i tłumaczyć dziecku podstawy programowania.
