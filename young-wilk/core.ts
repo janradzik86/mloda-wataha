@@ -5,6 +5,7 @@ import { handleSchoolHelp } from "./school-help";
 import { buildGameBlueprint } from "./game-builder";
 import { createStartupPrompt } from "./startup";
 import { crisisLearningIntro, forecastSupply, makeCrisisLearningTasks } from "./crisis-learning";
+import { analyzeCrisisProblem, wildlifeProblemTemplate } from "./adaptive-crisis-reasoning";
 
 function ageBand(age: number): AgeBand {
   if (age <= 9) return "7-9";
@@ -118,6 +119,14 @@ export class YoungWolfTutor {
 
   crisisLearningTasks(plan: Parameters<typeof makeCrisisLearningTasks>[0], forecasts: Parameters<typeof makeCrisisLearningTasks>[1]) {
     return makeCrisisLearningTasks(plan, forecasts);
+  }
+
+  crisisReason(problem: Parameters<typeof analyzeCrisisProblem>[0]) {
+    return analyzeCrisisProblem(problem);
+  }
+
+  wildlifeReasoningExample() {
+    return analyzeCrisisProblem(wildlifeProblemTemplate());
   }
 
   getAgeBand(): AgeBand {
