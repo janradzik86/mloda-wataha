@@ -74,3 +74,13 @@ if (!safetyScenario) throw new Error("Online safety scenario missing");
 const safetyResult = tutor.assessOnlineSafety("unknown-adult-private-chat");
 if (!safetyResult || safetyResult.risk !== "high") throw new Error("High-risk contact not detected");
 if (!safetyResult.recommendedActions.some(x => x.includes("rodzic"))) throw new Error("Trusted adult escalation missing");
+
+const impersonationRisk = tutor.assessReportedOnlineContact({
+  description: "Ktoś mówi, że ma tyle samo lat i prosi, żebym nie mówił rodzicom oraz wysłał zdjęcie.",
+  claimedPeer: true,
+  askedForSecret: true,
+  askedForPhoto: true
+});
+if (impersonationRisk.risk !== "high") throw new Error("Peer-claim high-risk contact not detected");
+if (!impersonationRisk.shouldNotifyParent) throw new Error("High-risk contact should create parent alert");
+if (impersonationRisk.parentAlert?.includeRawMessage !== false) throw new Error("Raw child message must not be shared by default");
