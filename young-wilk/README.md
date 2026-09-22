@@ -139,3 +139,10 @@ Młody WILK ma profile głosu: przyjaciel, odkrywca, nauczyciel i kryzysowy. Doc
 Młody WILK ma osobny moduł edukacyjny o prawach. Uczy przez scenki, a nie przez suche zapamiętywanie artykułów. Zakres początkowy obejmuje godność, równe traktowanie, ochronę praw dziecka, bycie wysłuchanym, prywatność i prawo do nauki.
 
 Treści muszą wskazywać źródła i odróżniać prawo od opinii. Młody WILK nie zastępuje porady prawnej.
+
+
+## Prawa i obowiązki obywatela
+
+Moduł praw został rozszerzony o przygotowanie do dorosłego życia. Młody WILK uczy praw człowieka, praw dziecka, praw obywatelskich, środków ochrony oraz konstytucyjnych obowiązków.
+
+W scenariuszach kryzysowych rozróżnia pomoc po klęsce, politykę mieszkaniową, odszkodowanie, odpowiedzialność organu publicznego i odwołanie. Nie przedstawia samego faktu zniszczenia domu przez powódź jako automatycznego prawa do odbudowy domu przez państwo.
