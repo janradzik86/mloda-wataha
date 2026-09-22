@@ -98,3 +98,30 @@ Nie mieszaj skrzynek. Rodzic nie dostaje listy wszystkich dzieci w systemie.
 
 Saldo i katalog Nory zyja w Mlodej Watasze.
 Przekazanie nagrody / utworu na zewnatrz (rodzic, studio) idzie mostem i wymaga zgody rodzica gdy dotyczy swiata poza aplikacja dziecka.
+
+
+## Alert bezpieczeństwa online
+
+Młody WILK może ocenić sytuację opisaną mu przez dziecko. Nie skanuje potajemnie wszystkich prywatnych rozmów.
+
+Jeśli opis zawiera wysokie ryzyko, np.:
+- prośbę o sekret przed rodzicem,
+- prywatne zdjęcia,
+- adres / szkołę / lokalizację,
+- propozycję spotkania,
+- hasło lub kod logowania,
+- presję, groźby lub treść seksualną,
+
+może utworzyć przez Family Bridge alert do sparowanego rodzica:
+
+kind = online_safety
+
+Powiadomienie rodzica ma zawierać:
+- poziom pilności,
+- ogólny opis,
+- wykryte sygnały ostrzegawcze.
+
+Domyślnie NIE przesyłamy pełnej treści prywatnej rozmowy dziecka. Surowa wiadomość może być udostępniona tylko przez jawne działanie dziecka / opiekuna w osobno zaprojektowanym przepływie.
+
+Dla ryzyka unclear Młody WILK zachęca dziecko do pokazania sytuacji rodzicowi, ale nie wysyła automatycznego alarmu.
+Dla high / urgent tworzy alert bezpieczeństwa, jeśli istnieje aktywny parent_link.
