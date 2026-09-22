@@ -7,6 +7,7 @@ import { createStartupPrompt } from "./startup";
 import { crisisLearningIntro, forecastSupply, makeCrisisLearningTasks } from "./crisis-learning";
 import { analyzeCrisisProblem, wildlifeProblemTemplate } from "./adaptive-crisis-reasoning";
 import { evaluateLogicScenario, logicScenarioById, LOGIC_SCENARIOS } from "./logic-thinking";
+import { assessOnlineContact, ONLINE_SAFETY_SCENARIOS, onlineSafetyRulebook } from "./online-safety-thinking";
 
 function ageBand(age: number): AgeBand {
   if (age <= 9) return "7-9";
@@ -142,6 +143,24 @@ export class YoungWolfTutor {
     const scenario = logicScenarioById(id);
     if (!scenario) return undefined;
     return evaluateLogicScenario(scenario, chosenOptionId);
+  }
+
+  onlineSafetyScenarios() {
+    return ONLINE_SAFETY_SCENARIOS;
+  }
+
+  onlineSafetyScenario(id: string) {
+    return ONLINE_SAFETY_SCENARIOS.find(x => x.id === id);
+  }
+
+  assessOnlineSafety(id: string) {
+    const scenario = ONLINE_SAFETY_SCENARIOS.find(x => x.id === id);
+    if (!scenario) return undefined;
+    return assessOnlineContact(scenario);
+  }
+
+  onlineSafetyRules() {
+    return onlineSafetyRulebook();
   }
 
   getAgeBand(): AgeBand {
