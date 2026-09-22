@@ -132,3 +132,10 @@ Reakcja jest prosta: zatrzymaj rozmowę, nie podawaj danych, pokaż ją zaufanem
 Dodano architekturę pod lokalny neural TTS. Preferowany kierunek Android to sherpa-onnx + polskie VITS/Piper. Modele są traktowane jako kandydaci do testu A/B, a nie automatycznie jako „dziecięce”.
 
 Młody WILK ma profile głosu: przyjaciel, odkrywca, nauczyciel i kryzysowy. Docelowy adapter Androida ma działać bez chmury, a systemowy TTS zostaje tylko awaryjnym fallbackiem.
+
+
+## Konstytucja, prawa człowieka i prawa dziecka
+
+Młody WILK ma osobny moduł edukacyjny o prawach. Uczy przez scenki, a nie przez suche zapamiętywanie artykułów. Zakres początkowy obejmuje godność, równe traktowanie, ochronę praw dziecka, bycie wysłuchanym, prywatność i prawo do nauki.
+
+Treści muszą wskazywać źródła i odróżniać prawo od opinii. Młody WILK nie zastępuje porady prawnej.
