@@ -88,3 +88,11 @@ if (impersonationRisk.parentAlert?.includeRawMessage !== false) throw new Error(
 const dignity = tutor.rightsLesson("rights.dignity");
 if (!dignity) throw new Error("Rights education lesson missing");
 if (!dignity.sourceRefs.some(x => x.includes("art. 30"))) throw new Error("Constitution source reference missing");
+
+const floodRights = tutor.civicLesson("civic.remedy.compensation-public-authority");
+if (!floodRights) throw new Error("Flood/public-authority remedy lesson missing");
+if (!floodRights.sourceRefs.includes("Konstytucja RP art. 77 ust. 1")) throw new Error("Art. 77 mapping missing");
+if (!floodRights.importantLimit?.includes("Nie każda szkoda")) throw new Error("Flood compensation nuance missing");
+
+const dutyLaw = tutor.civicLesson("civic.duty.law");
+if (!dutyLaw?.sourceRefs.includes("Konstytucja RP art. 83")) throw new Error("Citizen duties mapping missing");
