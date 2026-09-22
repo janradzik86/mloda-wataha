@@ -63,3 +63,8 @@ const wildlife = tutor.wildlifeReasoningExample();
 if (!wildlife.preferredOptionIds.includes("secure_food")) throw new Error("Safe indirect option should be preferred");
 if (!wildlife.rejectedOptionIds.includes("hand_feed")) throw new Error("Direct wildlife feeding should be rejected");
 if (!wildlife.rejectedOptionIds.includes("chase")) throw new Error("Risky chase should be rejected");
+
+const logic = tutor.logicScenario("logic.homework");
+if (!logic) throw new Error("Logic scenario missing");
+const logicResult = tutor.evaluateLogic("logic.homework", "b");
+if (!logicResult?.correct) throw new Error("Logic evaluation failed");
