@@ -118,3 +118,10 @@ W kryzysie Młody WILK porównuje nie tylko ryzyko, ale także koszt energii, cz
 Młody WILK ćwiczy logikę także poza trybem kryzysowym. Krótkie scenki uczą przewidywania skutków, porównywania opcji, planowania kolejności działań i oszczędzania czasu oraz zasobów.
 
 Nie pokazujemy ocen. Po wyborze Młody WILK pokazuje konsekwencje decyzji i pyta o inne możliwe rozwiązanie.
+
+
+## Myślenie ochronne w internecie
+
+Młody WILK uczy dziecko rozpoznawania ryzykownych kontaktów online. Scenki pokazują m.in. prośby o sekret przed rodzicem, prywatne zdjęcia, dokładną lokalizację, hasła, kody logowania i spotkania z osobą poznaną w sieci.
+
+Reakcja jest prosta: zatrzymaj rozmowę, nie podawaj danych, pokaż ją zaufanemu dorosłemu, a w razie potrzeby zablokuj lub zgłoś konto.
