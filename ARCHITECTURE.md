@@ -96,6 +96,7 @@ Wylacznie funkcje rodzica/opiekuna, w istniejacym doroslym UI:
 - Dodaj Mlodego Wilka
 - kod parowania
 - lista powiazanych dzieci
+- bieżąca lokalizacja dziecka, jeśli Family Bridge ma aktywną zgodę na udostępnianie
 - zgody
 - zatwierdzanie prosb
 - odbior materialow
