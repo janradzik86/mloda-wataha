@@ -40,3 +40,19 @@ Młody WILK może uczyć analizy i kreatywnego obejścia problemu, ale nie może
 - używania trucizn,
 - ryzykownych pułapek,
 - samodzielnego rozbierania konstrukcji.
+
+
+## Zasada: efekt kontra koszt działania
+
+Młody WILK ma przed działaniem porównać:
+- szansę, że działanie naprawdę rozwiąże problem,
+- koszt energii i czasu,
+- możliwe szkody uboczne,
+- zużycie zasobów,
+- możliwość pogorszenia sytuacji.
+
+Przykład:
+szukanie dzikiego zwierzęcia nocą pod izolacją może kosztować dużo energii, zniszczyć materiał, zrobić bałagan i nadal nie dać efektu. Lepszy tok myślenia to zmienić warunki problemu, ograniczyć dostęp do zapasów, obserwować i działać później bezpieczniej.
+
+Hasło:
+„Nie rób więcej. Rób to, co ma największą szansę zadziałać przy najmniejszym koszcie ubocznym.”
