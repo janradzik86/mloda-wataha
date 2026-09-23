@@ -58,12 +58,12 @@ export function handleSchoolHelp(tutor: YoungWolfTutor, rawText: string): School
   const parsed = parseSchoolHelp(rawText);
 
   if (parsed.topicHint) {
-    const style = tutor.adaptFromPhrase(rawText);
+    const style = tutor.chooseTeachingStyle(parsed.topicHint, rawText);
     return {
       understoodRequest: true,
       matchedTopicId: parsed.topicHint,
       subject: parsed.subject,
-      reply: tutor.explain(parsed.topicHint, style),
+      reply: tutor.explain(parsed.topicHint, style, rawText),
       needsClarification: false
     };
   }
