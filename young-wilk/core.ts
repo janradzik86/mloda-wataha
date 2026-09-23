@@ -12,6 +12,7 @@ import { assessChildReportedContact } from "./online-safety-triage";
 import { RIGHTS_LESSONS, rightsLessonById, rightsLearningRules } from "./rights-education";
 import { CIVIC_RIGHTS_AND_DUTIES, civicLessonById, civicLearningPrinciples } from "./civic-rights-duties";
 import { AdaptiveTeachingMemory, type TeachingOutcome } from "./adaptive-teaching";
+import { capabilitiesReply, isCapabilitiesQuestion } from "./capabilities";
 
 function ageBand(age: number): AgeBand {
   if (age <= 9) return "7-9";
@@ -159,6 +160,15 @@ export class YoungWolfTutor {
 
   startup(childName?: string) {
     return createStartupPrompt(childName);
+  }
+
+  /**
+   * Meta-pytania o samego Młodego WILKA i aplikację.
+   * UI może wywołać to przed zwykłym routingiem wiedzy.
+   */
+  answerAppQuestion(rawText: string): TutorReply | undefined {
+    if (!isCapabilitiesQuestion(rawText)) return undefined;
+    return capabilitiesReply(ageBand(this.profile.age));
   }
 
   buildGame(rawText: string, learningTopicId?: string) {
