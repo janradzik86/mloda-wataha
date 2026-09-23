@@ -155,3 +155,17 @@ W scenariuszach kryzysowych rozróżnia pomoc po klęsce, politykę mieszkaniow�
 ## Aktualizacje wiedzy
 
 Młody WILK jest local-first, ale w trybie normalnym może sprawdzać i pobierać podpisane pakiety wiedzy. Prawo, pierwsza pomoc i procedury kryzysowe nie uczą się bezpośrednio z otwartego internetu. W Trybie Kryzysowym aktualizacje sieciowe są wyłączone i używana jest ostatnia zweryfikowana wersja lokalna.
+
+
+## „Co potrafisz?” i pomoc w poruszaniu się po aplikacji
+
+Młody WILK rozpoznaje pytania typu:
+- „Co potrafisz?”
+- „W czym możesz pomóc?”
+- „Jak działa ta aplikacja?”
+- „Co tu mogę robić?”
+- „Jak się tu odnaleźć?”
+
+Zamiast odsyłać dziecko do sztywnego menu, odpowiada prostym opisem dostępnych możliwości i podaje przykłady naturalnych zdań, których dziecko może użyć. Obejmuje m.in. pomoc szkolną, naukę adaptacyjną, gry i misje, logiczne myślenie, bezpieczeństwo, tryb kryzysowy i SOS, prawa dziecka, mapę/orientację, Family Bridge oraz Norę i nagrody.
+
+Założenie UX: dziecko nie powinno musieć znać struktury aplikacji. Może napisać „gdzie znajdę…?” albo „pomóż mi zrobić…”, a Młody WILK powinien wyjaśnić drogę lub poprowadzić krok po kroku.
