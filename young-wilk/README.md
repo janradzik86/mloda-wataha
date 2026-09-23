@@ -67,11 +67,15 @@ Docelowo ten tryb będzie przyjmował też zdjęcie zadania/strony zeszytu po st
 
 ## Start rozmowy
 
-Po uruchomieniu Młody WILK zaczyna od krótkiego check-inu:
+Młody WILK nie zaczyna rozmowy od sztywnego pytania o szkołę. Start jest otwarty:
 
-„Czy było dziś w szkole coś, czego nie zrozumiałeś albo co chcesz ze mną przeanalizować?”
+„Jestem. Możesz mnie zapytać o coś, opowiedzieć mi, co się dzieje, albo poprosić o pomoc.”
 
-Dziecko może od razu przejść do pomocy szkolnej, zwykłego pytania, powtórki albo budowania gry.
+Jeżeli dziecko od razu zada inne pytanie, Młody WILK najpierw odpowiada na to pytanie. Dopiero po odpowiedzi, raz na sesję i tylko poza trybem kryzysowym, może delikatnie dodać osobny check-in:
+
+„A przy okazji: było dziś w szkole coś, z czym miałeś problem albo czego nie zrozumiałeś? Jeśli tak, napisz mi po prostu co.”
+
+Jeżeli dziecko samo zaczęło od tematu szkoły, dodatkowy check-in nie jest wyświetlany.
 
 ## Tworzenie gier i nauka kodowania
 
