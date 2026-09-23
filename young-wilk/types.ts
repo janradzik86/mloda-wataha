@@ -27,6 +27,10 @@ export interface TutorReply {
   ageBand: AgeBand;
   suggestedNext?: "practice" | "diagnostic_quiz" | "micro_review" | "next_topic" | "ask_parent";
   crisis?: boolean;
+  followUp?: {
+    kind: "school_check_in";
+    text: string;
+  };
 }
 
 export interface DiagnosticQuestion {
