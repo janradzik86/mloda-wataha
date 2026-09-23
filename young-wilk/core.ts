@@ -34,6 +34,7 @@ export class YoungWolfTutor {
   private lastTopic?: string;
   private lastStyle: ExplainStyle;
   private teachingMemory = new AdaptiveTeachingMemory();
+  private schoolCheckInDone = false;
 
   constructor(private profile: LearnerProfile) {
     this.lastStyle = profile.preferredStyle;
@@ -49,12 +50,12 @@ export class YoungWolfTutor {
     );
 
     if (!lesson) {
-      return {
-        text: "Tego tematu nie mam jeszcze w zatwierdzonej bazie. Mogę pomóc w innym zadaniu albo poprosić administratora o dodanie materiału.",
+      return this.attachSchoolCheckIn({
+        text: "Tego tematu nie mam jeszcze w zatwierdzonej bazie. Jeśli napiszesz mi dokładniej, o co chodzi, spróbuję znaleźć bezpieczną drogę dalej.",
         style: selectedStyle,
         ageBand: band,
         suggestedNext: "ask_parent"
-      };
+      });
     }
 
     this.lastTopic = topicId;
@@ -66,14 +67,14 @@ export class YoungWolfTutor {
       ? lesson.concept + " " + example
       : stylePrefix(selectedStyle) + lesson.concept + " " + example;
 
-    return {
+    return this.attachSchoolCheckIn({
       topicId,
       text: body + (practice ? " Spróbuj: " + practice : ""),
       style: selectedStyle,
       ageBand: band,
       suggestedNext: "practice",
       crisis: lesson.safetyClass === "crisis"
-    };
+    });
   }
 
   explainDifferently(): TutorReply {
@@ -110,7 +111,31 @@ export class YoungWolfTutor {
   }
 
   schoolHelp(rawText: string) {
+    // Skoro dziecko samo weszło w temat szkoły, nie dokładamy osobnego check-inu.
+    this.schoolCheckInDone = true;
     return handleSchoolHelp(this, rawText);
+  }
+
+  /**
+   * Najpierw odpowiadamy na aktualne pytanie dziecka.
+   * Dopiero potem, raz na sesję i tylko poza kryzysem, UI może pokazać
+   * delikatny check-in o szkole jako osobne pytanie pomocnicze.
+   */
+  private attachSchoolCheckIn(reply: TutorReply): TutorReply {
+    if (reply.crisis || this.schoolCheckInDone) return reply;
+
+    this.schoolCheckInDone = true;
+    return {
+      ...reply,
+      followUp: {
+        kind: "school_check_in",
+        text: "A przy okazji: było dziś w szkole coś, z czym miałeś problem albo czego nie zrozumiałeś? Jeśli tak, napisz mi po prostu co."
+      }
+    };
+  }
+
+  resetConversationCheckIns() {
+    this.schoolCheckInDone = false;
   }
 
   /**
