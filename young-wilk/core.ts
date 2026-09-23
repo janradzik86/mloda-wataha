@@ -11,6 +11,7 @@ import { assessOnlineContact, ONLINE_SAFETY_SCENARIOS, onlineSafetyRulebook } fr
 import { assessChildReportedContact } from "./online-safety-triage";
 import { RIGHTS_LESSONS, rightsLessonById, rightsLearningRules } from "./rights-education";
 import { CIVIC_RIGHTS_AND_DUTIES, civicLessonById, civicLearningPrinciples } from "./civic-rights-duties";
+import { AdaptiveTeachingMemory, type TeachingOutcome } from "./adaptive-teaching";
 
 function ageBand(age: number): AgeBand {
   if (age <= 9) return "7-9";
@@ -32,37 +33,43 @@ function stylePrefix(style: ExplainStyle) {
 export class YoungWolfTutor {
   private lastTopic?: string;
   private lastStyle: ExplainStyle;
+  private teachingMemory = new AdaptiveTeachingMemory();
 
   constructor(private profile: LearnerProfile) {
     this.lastStyle = profile.preferredStyle;
   }
 
-  explain(topicId: string, style: ExplainStyle = this.lastStyle): TutorReply {
+  explain(topicId: string, style?: ExplainStyle, childText?: string): TutorReply {
     const lesson = lessonById(topicId);
     const band = ageBand(this.profile.age);
+    const selectedStyle = style ?? this.teachingMemory.choose(
+      topicId,
+      childText,
+      this.profile.preferredStyle
+    );
 
     if (!lesson) {
       return {
         text: "Tego tematu nie mam jeszcze w zatwierdzonej bazie. Mogę pomóc w innym zadaniu albo poprosić administratora o dodanie materiału.",
-        style,
+        style: selectedStyle,
         ageBand: band,
         suggestedNext: "ask_parent"
       };
     }
 
     this.lastTopic = topicId;
-    this.lastStyle = style;
+    this.lastStyle = selectedStyle;
 
     const example = lesson.examplesByBand[band][0] ?? "";
     const practice = lesson.practiceByBand[band][0] ?? "";
     const body = lesson.safetyClass === "crisis"
       ? lesson.concept + " " + example
-      : stylePrefix(style) + lesson.concept + " " + example;
+      : stylePrefix(selectedStyle) + lesson.concept + " " + example;
 
     return {
       topicId,
       text: body + (practice ? " Spróbuj: " + practice : ""),
-      style,
+      style: selectedStyle,
       ageBand: band,
       suggestedNext: "practice",
       crisis: lesson.safetyClass === "crisis"
@@ -104,6 +111,25 @@ export class YoungWolfTutor {
 
   schoolHelp(rawText: string) {
     return handleSchoolHelp(this, rawText);
+  }
+
+  /**
+   * Po każdej próbie Młody WILK dostaje wynik i sam koryguje sposób nauczania.
+   * UI nie musi pokazywać dziecku przełączników stylu.
+   */
+  recordTeachingOutcome(outcome: Omit<TeachingOutcome, "at"> & { at?: string }) {
+    this.teachingMemory.record({
+      ...outcome,
+      at: outcome.at ?? new Date().toISOString()
+    });
+  }
+
+  chooseTeachingStyle(topicId: string, childText?: string): ExplainStyle {
+    return this.teachingMemory.choose(topicId, childText, this.profile.preferredStyle);
+  }
+
+  recentTeachingOutcomes(topicId?: string) {
+    return this.teachingMemory.recent(topicId);
   }
 
   startup(childName?: string) {
