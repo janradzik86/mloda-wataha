@@ -1,5 +1,18 @@
 export type YoungWolfVoiceMode = "friend" | "explorer" | "teacher" | "crisis";
 
+export type VoiceSource = "android-system" | "bundled-neural" | "network";
+
+export interface SystemVoiceCandidate {
+  id: string;
+  engineId: string;
+  name: string;
+  locale: string;
+  networkRequired: boolean;
+  installed: boolean;
+  quality?: number;
+  latency?: number;
+}
+
 export interface OfflineVoiceCandidate {
   id: string;
   locale: "pl-PL";
@@ -20,7 +33,7 @@ export const POLISH_OFFLINE_VOICE_CANDIDATES: OfflineVoiceCandidate[] = [
     modelId: "vits-piper-pl_PL-jarvis_wg_glos-medium",
     displayName: "Kandydat A",
     bundledByDefault: false,
-    notes: "Kandydat do odsłuchu A/B. Nie zakładać, że brzmi dziecięco bez testu na urządzeniu."
+    notes: "Awaryjny lokalny głos neuronowy. Używany, gdy Android nie udostępnia odpowiedniego polskiego TTS offline."
   },
   {
     id: "pl-justyna-medium",
@@ -30,7 +43,7 @@ export const POLISH_OFFLINE_VOICE_CANDIDATES: OfflineVoiceCandidate[] = [
     modelId: "vits-piper-pl_PL-justyna_wg_glos-medium",
     displayName: "Kandydat B",
     bundledByDefault: false,
-    notes: "Kandydat do odsłuchu A/B. Nie zakładać, że brzmi dziecięco bez testu na urządzeniu."
+    notes: "Drugi kandydat awaryjny do testów A/B na urządzeniu."
   }
 ];
 
@@ -44,38 +57,10 @@ export interface YoungWolfVoiceProfile {
 }
 
 export const YOUNG_WOLF_VOICE_PROFILES: Record<YoungWolfVoiceMode, YoungWolfVoiceProfile> = {
-  friend: {
-    id: "friend",
-    label: "Młody Wilk",
-    speed: 1.06,
-    pitchHint: 1.06,
-    sentenceMaxChars: 150,
-    tone: "ciepły, młody, naturalny, bez kreskówkowej przesady"
-  },
-  explorer: {
-    id: "explorer",
-    label: "Wilk Odkrywca",
-    speed: 1.12,
-    pitchHint: 1.07,
-    sentenceMaxChars: 125,
-    tone: "żywy, ciekawski, energiczny"
-  },
-  teacher: {
-    id: "teacher",
-    label: "Wilk Nauczyciel",
-    speed: 0.98,
-    pitchHint: 1.04,
-    sentenceMaxChars: 165,
-    tone: "spokojny, przyjazny, bardzo wyraźny"
-  },
-  crisis: {
-    id: "crisis",
-    label: "Wilk Kryzysowy",
-    speed: 0.9,
-    pitchHint: 1.0,
-    sentenceMaxChars: 90,
-    tone: "spokojny, krótki, jednoznaczny, bez żartów"
-  }
+  friend: { id: "friend", label: "Młody Wilk", speed: 1.06, pitchHint: 1.06, sentenceMaxChars: 150, tone: "ciepły, młody, naturalny" },
+  explorer: { id: "explorer", label: "Wilk Odkrywca", speed: 1.12, pitchHint: 1.07, sentenceMaxChars: 125, tone: "żywy, ciekawski, energiczny" },
+  teacher: { id: "teacher", label: "Wilk Nauczyciel", speed: 0.98, pitchHint: 1.04, sentenceMaxChars: 165, tone: "spokojny, przyjazny, bardzo wyraźny" },
+  crisis: { id: "crisis", label: "Wilk Kryzysowy", speed: 0.9, pitchHint: 1.0, sentenceMaxChars: 90, tone: "spokojny, krótki, jednoznaczny, bez żartów" }
 };
 
 export interface OfflineVoicePackState {
@@ -87,6 +72,12 @@ export interface OfflineVoicePackState {
 
 export function chooseVoiceProfile(mode: YoungWolfVoiceMode): YoungWolfVoiceProfile {
   return YOUNG_WOLF_VOICE_PROFILES[mode];
+}
+
+export function chooseBestSystemPolishVoice(voices: SystemVoiceCandidate[]): SystemVoiceCandidate | undefined {
+  return voices
+    .filter(v => v.installed && !v.networkRequired && v.locale.toLowerCase().startsWith("pl"))
+    .sort((a, b) => (b.quality ?? 0) - (a.quality ?? 0) || (a.latency ?? 999) - (b.latency ?? 999))[0];
 }
 
 export function voiceNeedsDownload(state: OfflineVoicePackState | undefined) {
