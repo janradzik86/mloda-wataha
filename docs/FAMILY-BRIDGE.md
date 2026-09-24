@@ -98,3 +98,149 @@ Nie mieszaj skrzynek. Rodzic nie dostaje listy wszystkich dzieci w systemie.
 
 Saldo i katalog Nory zyja w Mlodej Watasze.
 Przekazanie nagrody / utworu na zewnatrz (rodzic, studio) idzie mostem i wymaga zgody rodzica gdy dotyczy swiata poza aplikacja dziecka.
+
+
+## Alert bezpieczeństwa online
+
+Młody WILK może ocenić sytuację opisaną mu przez dziecko. Nie skanuje potajemnie wszystkich prywatnych rozmów.
+
+Jeśli opis zawiera wysokie ryzyko, np.:
+- prośbę o sekret przed rodzicem,
+- prywatne zdjęcia,
+- adres / szkołę / lokalizację,
+- propozycję spotkania,
+- hasło lub kod logowania,
+- presję, groźby lub treść seksualną,
+
+może utworzyć przez Family Bridge alert do sparowanego rodzica:
+
+kind = online_safety
+
+Powiadomienie rodzica ma zawierać:
+- poziom pilności,
+- ogólny opis,
+- wykryte sygnały ostrzegawcze.
+
+Domyślnie NIE przesyłamy pełnej treści prywatnej rozmowy dziecka. Surowa wiadomość może być udostępniona tylko przez jawne działanie dziecka / opiekuna w osobno zaprojektowanym przepływie.
+
+Dla ryzyka unclear Młody WILK zachęca dziecko do pokazania sytuacji rodzicowi, ale nie wysyła automatycznego alarmu.
+Dla high / urgent tworzy alert bezpieczeństwa, jeśli istnieje aktywny parent_link.
+
+
+## Lokalizacja dziecka dla sparowanego rodzica
+
+Family Bridge może przenosić bieżącą lokalizację dziecka do aplikacji Polska Wataha, ale tylko dla aktywnego parent_link.
+
+Nowe encje:
+
+```
+child_location_consent (
+  child_user_id,
+  parent_user_id,
+  enabled,
+  mode,               -- off | while_app_open | background
+  share_exact_location,
+  retention_hours,
+  updated_at
+)
+
+child_location_fix (
+  child_user_id,
+  lat,
+  lon,
+  accuracy_m,
+  recorded_at,
+  source
+)
+```
+
+Endpointy:
+
+- POST /bridge/location/consent
+- POST /bridge/location/update
+- GET /bridge/children/:id/location
+- DELETE /bridge/location/history
+
+Zasady bezpieczeństwa:
+- tylko sparowany rodzic/opiekun,
+- backend sprawdza parent_link, nie ufa child_user_id z klienta,
+- dziecko widzi wyraźny status „Udostępniasz lokalizację rodzicowi”,
+- brak publicznej lokalizacji,
+- brak lokalizacji dla ADMIN tylko dlatego, że jest ADMIN,
+- śledzenie w tle wymaga osobnego uprawnienia systemowego,
+- retencja historii ma być krótka i konfigurowalna,
+- po wyłączeniu udostępniania nowe pozycje nie są wysyłane,
+- SOS może wysłać bieżącą pozycję zgodnie z trybem kryzysowym.
+
+W Polskiej Watasze rodzic widzi:
+- bieżącą pozycję na mapie,
+- czas ostatniej aktualizacji,
+- dokładność,
+- status „aktualna / nieaktualna”.
+
+Nie budujemy ukrytego śledzenia. Funkcja ma być jawna po stronie dziecka i ograniczona do zatwierdzonej relacji rodzic-dziecko.
+
+
+## SOS: zabezpieczenie dźwięku otoczenia
+
+Po świadomym naciśnięciu przez dziecko przycisku „POTRZEBUJĘ POMOCY” aplikacja może uruchomić Emergency Evidence Capture.
+
+Zakres MVP:
+- nagrywanie wyłącznie po SOS,
+- wyraźny wskaźnik aktywnego mikrofonu,
+- brak stałego podsłuchu i brak ukrytego nagrywania przed SOS,
+- limit czasu nagrania,
+- lokalne szyfrowanie,
+- SHA-256 po zakończeniu pliku,
+- zapis czasu,
+- opcjonalnie zapis pozycji GPS i dokładności,
+- upload tylko do aktywnie sparowanego rodzica/opiekuna,
+- brak publicznego dostępu,
+- brak automatycznego wysyłania pliku do policji lub innych służb.
+
+Nowe endpointy kontraktowe:
+- POST /bridge/emergency-evidence/start
+- POST /bridge/emergency-evidence/:id/complete
+- POST /bridge/emergency-evidence/:id/upload
+- GET /bridge/children/:id/emergency-evidence
+- DELETE /bridge/emergency-evidence/:id
+
+Backend musi weryfikować parent_link i ownership. Sam ADMIN nie otrzymuje dostępu do nagrań dziecka.
+
+Rodzic w Polskiej Watasze widzi zdarzenie:
+„SOS dziecka · dostępny zapis dźwięku”
+oraz czas, pozycję i integralność pliku.
+
+
+## SOS: transmisja dźwięku na żywo do opiekuna
+
+Docelowy model NIE polega na nagrywaniu materiału na urządzeniu dziecka jako głównym miejscu zapisu.
+
+Po jawnym użyciu przez dziecko przycisku „POTRZEBUJĘ POMOCY”:
+
+1. Młoda Wataha otwiera szyfrowaną sesję SOS audio.
+2. Family Bridge sprawdza aktywny parent_link.
+3. Backend wysyła opiekunowi pilne powiadomienie i dane sygnalizacyjne.
+4. Telefon dziecka transmituje dźwięk mikrofonu na żywo.
+5. Polska Wataha opiekuna odbiera strumień.
+6. Nagranie jest zapisywane lokalnie na urządzeniu opiekuna.
+7. Serwer pośredniczący nie archiwizuje samego audio.
+
+Preferowany transport: WebRTC z szyfrowaniem transportowym. Backend służy do auth, sygnalizacji sesji i powiadomień, nie do przechowywania strumienia.
+
+Kontrakt:
+- POST /bridge/sos-audio/session
+- POST /bridge/sos-audio/:id/offer
+- POST /bridge/sos-audio/:id/answer
+- POST /bridge/sos-audio/:id/ice
+- POST /bridge/sos-audio/:id/end
+
+Wymagania:
+- start tylko po jawnym SOS dziecka,
+- widoczny wskaźnik użycia mikrofonu,
+- brak stałego podsłuchu,
+- tylko aktywnie sparowany rodzic/opiekun,
+- ADMIN bez parent_link nie ma dostępu,
+- dziecko widzi „Dźwięk jest przesyłany do opiekuna”,
+- rodzic widzi „SOS: odbieram dźwięk” i stan lokalnego nagrywania,
+- przy braku internetu alert/lokalizacja korzystają z dostępnych kanałów, ale strumień IP nie jest udawany jako działający.

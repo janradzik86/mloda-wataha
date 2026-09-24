@@ -78,6 +78,8 @@ W shellu USER nie istnieja: panel admina, baza wiedzy, konfiguracja systemu, dan
 
 Haslo produktu: zarzadzam systemem. Konto Wojana. Interfejs dla doroslego.
 
+ADMIN jest zarezerwowany wyłącznie dla zweryfikowanego konta `jan.radzik86@gmail.com`. Autoryzacja jest wymuszana po stronie serwera; sam przycisk, ścieżka `/admin` ani dane przesłane przez klienta nie mogą nadać roli.
+
 Zakres: tresci edukacyjne, etapy, przedmioty, poziomy/klasy, quizy, nagrody, Lizaki, katalog Nory, koszty nagrod, zgloszenia specjalne i piosenek, statusy produkcji (podglad), materialy do rodzica, zatwierdzone zgloszenia Family Bridge, konfiguracja Mlodego WILKA, baza wiedzy, sync, powiadomienia systemowe, ustawienia, uzytkownicy w zakresie admin, podglad systemu.
 
 ADMIN moze wlaczac i wylaczac elementy sterowane z backendu bez nowej wersji aplikacji.
@@ -94,6 +96,7 @@ Wylacznie funkcje rodzica/opiekuna, w istniejacym doroslym UI:
 - Dodaj Mlodego Wilka
 - kod parowania
 - lista powiazanych dzieci
+- bieżąca lokalizacja dziecka, jeśli Family Bridge ma aktywną zgodę na udostępnianie
 - zgody
 - zatwierdzanie prosb
 - odbior materialow

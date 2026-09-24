@@ -50,8 +50,12 @@ Nie trzymaj roli w localStorage jako źródła prawdy. Klient może cacheować s
 
 - Brak otwartej rejestracji ADMIN.
 - USER nie może sam sobie nadać ADMIN (parametr, hidden field, role=admin w URL).
-- Nadanie tylko po stronie serwera: WATAHA_ADMIN_EMAILS / WATAHA_ADMIN_USER_IDS albo jednorazowy seed SQL.
+- Jedynym kontem, które może otrzymać rolę ADMIN Młodej Watahy, jest konto uwierzytelnione dokładnie adresem: `jan.radzik86@gmail.com`.
+- Porównanie wykonuj po bezpiecznej normalizacji wielkości liter i białych znaków, ale NIE akceptuj aliasów z plusem, innych domen, wariantu googlemail.com ani podobnych adresów.
+- Sam adres e-mail w żądaniu nie wystarcza. Serwer musi najpierw zweryfikować sesję / tożsamość dostawcy auth, a dopiero potem sprawdzić zweryfikowany e-mail konta.
+- Rola ADMIN jest nadawana i egzekwowana wyłącznie po stronie serwera.
 - Hasła ADMIN nie wolno wpisywać na sztywno w aplikacji ani w bundle frontendu.
+- Brak zgodności dokładnego zweryfikowanego e-maila = brak roli ADMIN i odpowiedź 403 dla endpointów administracyjnych.
 
 ## Wymuszanie
 
@@ -88,3 +92,16 @@ Po sesji:
 - brak roli → odmowa, nie gość admina
 
 Nie pokazuj dziecku nieaktywnych funkcji administratora.
+
+
+## Twarda polityka właściciela ADMIN
+
+Stała polityka projektu:
+- OWNER_ADMIN_EMAIL = jan.radzik86@gmail.com
+- dokładnie jedno konto właściciela ma ADMIN,
+- brak samodzielnego awansu USER -> ADMIN,
+- brak admina przez parametr URL, localStorage, frontend, hidden field lub manipulację tokenem,
+- backend sprawdza rolę przy każdym chronionym endpointcie,
+- frontend może jedynie ukrywać/pokazywać shell, ale nie jest źródłem autoryzacji.
+
+Jeśli w przyszłości potrzebny będzie drugi administrator, wymaga to świadomej zmiany polityki i kodu po stronie serwera. Nie rozszerzaj listy automatycznie.
